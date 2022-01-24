@@ -1,0 +1,168 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant-TW" xml:lang="zh-Hant-TW">
+<head>
+<title>lets be frens - Testnet Rinkeby</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+
+	body{
+		font-family: 'Courier New';
+		font-size: '20px';
+	}
+	
+	a {
+	  color: white;
+	  /* text-decoration: none; */
+      text-decoration:underline;
+      text-decoration-style: dotted;
+      text-decoration-color: gold;
+	}
+	
+	a:hover {
+	  color: gold;
+      text-decoration: none;
+	}
+	
+	p.kj {
+		font-family: 'Noto Sans TC', sans-serif;
+		text-align: center;
+		font-size: '100px';
+	}
+	
+	table{
+	  border: 4px solid #333333;
+	  border-spacing: 10px;
+      border-radius: 10px;
+      background-color: #333333;
+	}
+	
+	tr, td {
+	  /* border: 3px solid #444444; */
+      border: 0px solid black;
+	}
+
+    input[type='text'] { 
+        /* font-size: 24px;  */
+        font-family: monospace;
+    }
+	
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+</head>
+<body leftmargin="6%" rightmargin="6%" style="color:#ffffff; background-color:#111111">
+
+
+<!-- Header -->
+<div>
+<h1>lets be frens - Testnet Rinkeby</h1>
+<h4>上傳檔案到 <a href="https://ipfs.io/">IPFS</a>（星際檔案系統）並發行對應的 <a href="https://eips.ethereum.org/EIPS/eip-721">ERC-721</a> NFT（非同質性代幣）</h4>
+<br>
+</div>
+
+<hr>
+
+
+
+<!-- Step 1 -->
+<h3>【步驟一】透過 Pinata API 上傳檔案到 IPFS</h3>
+<div style="margin-left: 30px">
+    <table>
+        <tr>
+            <td><label for="pinata-api-key">pinata_api_key</label>&nbsp;</td>
+            <td><input type="text" id="pinata-api-key" size="26" value="" placeholder="60**ec**e6*3**605**f" /></td>
+        </tr>
+        <tr>
+            <td><label for="pinata-secret-api-key">pinata_secret_api_key</label>&nbsp;</td>
+            <td><input type="text" id="pinata-secret-api-key" size="70" value="" placeholder="6f**67**bc893d**5dfcef****d496dbfba****e26ee8a51cb******82bc**13" /></td>
+        </tr>
+        <tr>
+            <td><label for="file-to-pin">選擇檔案</label></td>
+            <td><input type="file" id="file-to-pin" name="file-to-pin"></td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="pinFileToIPFS()">上傳檔案</button>
+</div>
+
+<br><br>
+
+
+<!-- Step 2 -->
+<h3>【步驟二】準備 NFT meta（元檔案；即描述步驟一檔案的檔案）並上傳到 IPFS</h3>
+<div style="margin-left: 30px">
+    <table>
+        <tr>
+            <td><label for="nft-name">NFT 標題</label></td>
+            <td><input type="text" id="nft-name" size=24" value="" placeholder="lets be frens" /></td>
+        </tr>
+        <tr>
+            <td><label for="nft-description">NFT 說明</label></td>
+            <td><input type="text" id="nft-description" size="60" value="" placeholder="孤獨比想像中的還遙遠靜謐" /></td>
+        </tr>
+        <tr>
+            <td><label for="nft-image-ipfs">NFT 檔案位址</label>&nbsp;</td>
+            <td><input type="text" id="nft-image-ipfs" size="60" value="" placeholder="ipfs://" /></td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="pinJSONToIPFS()">Pin meta to IPFS</button>
+</div>
+
+
+<br><br>
+
+
+<!-- Step 3 -->
+<h3>【步驟三】連接錢包</h3>
+<div style="margin-left: 30px">
+    <button onclick="onConnect()">連結錢包</button>&nbsp;&#10230 
+    <label for="connected-address">錢包位址：</label><input type="text" id="connected-address" size="45" value="" readonly placeholder="0x..."/><br>
+</div>
+<br><br>
+
+
+<!-- Step 4 -->
+<h3>【步驟四】發行 ERC-721 NFT （0.001 TestETH + 瓦斯費）</h3>
+<div style="margin-left: 30px">
+    <table>
+        <tr>
+            <td><label for="nft-contract-address">NFT 合約位址</label></td>
+            <td><input type="text" id="nft-contract-address" size="60" value="0xC2CFD6dFbC52319f8F34D056F10EB49016925d27" readonly /></td>
+        </tr>
+        <tr>
+            <td><label for="nft-mint-fee">鑄造費用</label></td>
+            <td><input type="text" id="nft-mint-fee" size="8" value="" readonly />  TestETH + 瓦斯費</td>
+        </tr>
+        <tr>
+            <td><label for="nft-meta-ipfs">NFT 元檔案 URI 位址</label></td>
+            <td><input type="text" id="nft-meta-ipfs" size="60" value="" placeholder="ipfs://" /></td>
+        </tr>
+        <tr>
+            <td><label for="nft-recipient-address">NFT 收件位址</label> <button onclick="toOneself()">給自己</button></td>
+            <td><input type="text" id="nft-recipient-address" size="60" value="" placeholder="0x..." /></td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="mintNFT()">發行 NFT</button>&nbsp;&#10230 
+    <label for="tx-info">Token ID：</label><input type="text" id="tx-info" size="6" value="" readonly placeholder="1450"/><br>
+    <br>
+</div>
+<br><br>
+
+<!-- Footer -->
+<hr><br>
+
+<div id="waifusdiv" align="center"></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+<script src="script/frens-abi.js"></script>
+<script src="script/frens.js"></script>
+
+有問題不一定要找 <a href="https://noise.cash/u/liwi">https://noise.cash/u/liwi</a>，因為他也不一定會。
+</body>
+</html>
