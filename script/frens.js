@@ -61,6 +61,7 @@ async function pinFileToIPFS() {
     ).then(function (response) {
         console.log(response.data);
         document.getElementById('nft-image-ipfs').value = "ipfs://" + response.data.IpfsHash;
+        document.getElementById('file-preview-https').innerHTML = `&nbsp;&#10230&nbsp;<a href="https://ipfs.io/ipfs/${response.data.IpfsHash}" target="_blank">檔案預覽 https://ipfs.io/ipfs/${response.data.IpfsHash}</a>`;
 
     }).catch(function (error) {
         console.log(error);
@@ -100,6 +101,7 @@ async function pinJSONToIPFS() {
         .then(function (response) {
             console.log(response.data);
             document.getElementById('nft-meta-ipfs').value = "ipfs://" + response.data.IpfsHash;
+            document.getElementById('meta-preview-https').innerHTML = `&nbsp;&#10230&nbsp;<a href="https://ipfs.io/ipfs/${response.data.IpfsHash}" target="_blank">Meta 預覽 https://ipfs.io/ipfs/${response.data.IpfsHash}</a>`;
         })
         .catch(function (error) {
             console.log(error);
