@@ -1,9 +1,9 @@
 console.log("frens.js loaded");
 
-function onConnect() {
+async function onConnect() {
 
-    connectWallet();
-    getMintFee();
+    await connectWallet();
+    await getMintFee();
 
 }
 
