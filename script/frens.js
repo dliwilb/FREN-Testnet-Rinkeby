@@ -29,7 +29,7 @@ async function connectWallet() {
 
 async function getMintFee(){
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
+    const signer = await provider.getSigner();
     const nftContractAddress = document.getElementById('nft-contract-address').value;
     const contract = new ethers.Contract(nftContractAddress, frensAbi, signer);
     
