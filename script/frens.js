@@ -1,40 +1,81 @@
 console.log("frens.js loaded");
 
+let isWalletConnected = false;
+let isNetworkConnected = false;
+
 async function onConnect() {
 
     await connectWallet();
-    await getMintFee();
+    if (isWalletConnected == true){
+        await switchNetwork();
+        if (isNetworkConnected == true){
+            await getMintFee();
+        }
+    }
 
 }
 
 async function connectWallet() {
-    
-    window.ethereum.request( {
-		method: 'eth_requestAccounts',
-	} )
-    .then( ( response ) => {
-		const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-		document.getElementById('connected-address').value = response[0];
+    if (window.ethereum) {
+        try {
+            const connectedAccount = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            isWalletConnected = true;
+            document.getElementById('connected-address').value = connectedAccount;
+            logToConsoleAndPage('log: wallet connected');
+        }
+        catch (error) {
+            if (error.code === 4001) {
+                logToConsoleAndPage('log: connection rejected by user');
+            }
 
-		window.ethereum.request({
-			method: 'wallet_switchEthereumChain',
-			params: [{ chainId: '0x4' }],
-		})
-	} );
-
-    console.log( 'Is MetaMask? ' + ethereum.isMetaMask);
+            logToConsoleAndPage('log: cannot connect to wallet');
+        }
+    }
 
 }
 
+async function switchNetwork(){
+ 
+    try {
+        await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x4' }],
+        });
+
+        isNetworkConnected = true;
+        logToConsoleAndPage('log: switched to Testnet Rinkeby');
+    }
+    catch (error) {
+        if (error.code === 4001) {
+            logToConsoleAndPage('log: user rejected network switch');
+        }
+
+        logToConsoleAndPage('log: cannot switch to Testnet Rinkeby');
+        console.log(isWalletConnected);
+        console.log(isNetworkConnected);
+    }    
+}
+
+function logToConsoleAndPage(message){
+    console.log(message);
+    document.getElementById('js-log').innerHTML = message;
+}
+
 async function getMintFee(){
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = await provider.getSigner();
-    const nftContractAddress = document.getElementById('nft-contract-address').value;
-    const contract = new ethers.Contract(nftContractAddress, frensAbi, signer);
-    
-    const nftMintFee = await contract.mintFee();
-    document.getElementById('nft-mint-fee').value = ethers.utils.formatEther(nftMintFee);
+
+    if (isWalletConnected == true && isNetworkConnected == true){
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = await provider.getSigner();
+        const nftContractAddress = document.getElementById('nft-contract-address').value;
+        const contract = new ethers.Contract(nftContractAddress, frensAbi, signer);
+        
+        const nftMintFee = await contract.mintFee();
+        document.getElementById('nft-mint-fee').value = ethers.utils.formatEther(nftMintFee);
+    }
+    else{
+        alert("請先連結錢包並切換至 Rinkeby 測試網");
+    }
 }
 
 async function pinFileToIPFS() {
