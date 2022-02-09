@@ -42,12 +42,19 @@ async function readWhitelisted() {
     // const provider = new ethers.providers.Web3Provider(window.ethereum);
     // const provider = new ethers.providers.JsonRpcProvider('https://rinkeby-light.eth.linkpool.io/');
     const provider = ethers.getDefaultProvider(4);
+
+    const blockNum = await provider.getBlockNumber();   
+    const queryPeriodHour = 24;
+    const queryPeriodBlock = queryPeriodHour * 60 * 60 / 5;
+    const fromBlock = blockNum - queryPeriodBlock;
+    const toBlock = blockNum;
+
     const nftContract = new ethers.Contract(nftContractAddress, frensAbi, provider);
 
     let listContent = '';
 
     const eventFilter = nftContract.filters.userAdded();
-    const events = await nftContract.queryFilter(eventFilter);
+    const events = await nftContract.queryFilter(eventFilter, fromBlock, toBlock);
 
     for (let i = events.length-1; i >= 0; i--) {
         const newUser = events[i].args[0];
