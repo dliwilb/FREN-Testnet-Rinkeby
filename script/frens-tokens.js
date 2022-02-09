@@ -69,7 +69,7 @@ async function showToken() {
         <div class="nft-item">
             <img class="nft-image" src="${nftJSON.image}">
             <div class="nft-token-info">
-                fren #${tokenId}&nbsp;&nbsp;owned by&nbsp;&nbsp;<a class="creator" href="frens.html?a=${tokenOwner}">${tokenOwnerShort}</a>
+                fren #${tokenId}&nbsp;&nbsp;kept by&nbsp;&nbsp;<a class="creator" href="keepers.html?a=${tokenOwner}">${tokenOwnerShort}</a>
             </div>
             <div class="nft-token-info">
                 "${nftJSON.name}"
