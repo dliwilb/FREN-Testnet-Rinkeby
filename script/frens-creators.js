@@ -32,8 +32,11 @@ async function showCreated(createdBy) {
     const createdByShort = createdBy.substring(0, 6) + '...' + createdBy.substring(createdBy.length - 4);
 
     document.getElementById('div-frens-created').innerHTML = 'frens&nbsp;&nbsp;made by&nbsp;&nbsp;' + createdByShort;
+
     let previousTokenURI = '';
     let isRepeating = false;
+
+    let htmlToAdd = '';
     for (let i = events.length-1; i >= 0; i--) {
         const newItemId = events[i].args[0];
         let tokenURI = events[i].args[1].trim();
@@ -42,7 +45,8 @@ async function showCreated(createdBy) {
             isRepeating = false;
 
             if (i < events.length-1){
-                document.getElementById('div-frens-created').innerHTML += '</div>';
+                // document.getElementById('div-frens-created').innerHTML += '</div><!-- loc#1 -->';
+                htmlToAdd += '</div><!-- loc#1 -->';
             }
 
             previousTokenURI = tokenURI;
@@ -59,35 +63,49 @@ async function showCreated(createdBy) {
                 nftJSON.image = 'https://ipfs.io/ipfs/' + foundIPFSinJSONImage[1];
             }
 
-            document.getElementById('div-frens-created').innerHTML +=
+            // document.getElementById('div-frens-created').innerHTML +=
+            htmlToAdd += 
                 `
                 <div class="nft-item">
                     <img class="nft-image" src="${nftJSON.image}">
                     <div class="nft-token-info">
                         # ${newItemId} : "${nftJSON.name}"
-                    </div>
+                    </div><!-- loc#a -->
                     <div class="nft-token-info">
                         ${nftJSON.description}
-                    </div>
+                    </div><!-- loc#b -->
                 `;
             
 
         } else {
-            isRepeating = true;
+            // console.log('trued');
+            if (isRepeating == true){
+                htmlToAdd += 
+                `
+                <span class="nft-token-info"># ${newItemId} </span>&nbsp;<!-- loc#2 -->
+                `;
+            } else {
+                htmlToAdd += 
+                `
+                <span class="nft-token-info">Multiple Editions...&nbsp;&nbsp;# ${newItemId} </span>&nbsp;<!-- loc#2 -->
+                `;
+                isRepeating = true;
+            }
 
-            document.getElementById('div-frens-created').innerHTML +=
-            `
-            <span class="nft-token-info"># ${newItemId} </span>
-            `;
+
+            // document.getElementById('div-frens-created').innerHTML +=
+
         }
 
     }
 
-    if ( isRepeating == true ){
-        document.getElementById('div-frens-created').innerHTML += '</div>';
-    }
+    htmlToAdd += '</div><!-- loc#3 -->';
+    isRepeating = false;
+    
 
-    // let listContent = '';
+    console.log(htmlToAdd);
+    document.getElementById('div-frens-created').innerHTML += htmlToAdd;
+
 
 }
 
