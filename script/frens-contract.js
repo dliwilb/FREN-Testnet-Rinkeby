@@ -19,8 +19,10 @@ async function readContractStatVar(){
 
     listContent += "<li>_tokenIds: " + await nftContract._tokenIds() + "</li>"; 
     listContent += "<li>isAddUserAllowed: " + await nftContract.isAddUserAllowed() + "</li>";
-    listContent += "<li>mintFee: " + await nftContract.mintFee() + "wei </li>";
-    listContent += "<li>whitelistFee: " + await nftContract.whitelistFee() + "wei </li>";
+    const mintFeeWei = await nftContract.mintFee();
+    listContent += "<li>mintFee: " + mintFeeWei + ` wei (${mintFeeWei*1e-18} ether)</li>`;
+    const whitelistFeeWei = await nftContract.whitelistFee()
+    listContent += "<li>whitelistFee: " + whitelistFeeWei + ` wei (${whitelistFeeWei*1e-18} ether)</li>`;
     listContent += "<li>whitelistWaiver: " + await nftContract.whitelistWaiver() + "</li>";
     listContent += "<li>name: " + await nftContract.name() + "</li>";
     listContent += "<li>symbol: " + await nftContract.symbol() + "</li>";
