@@ -32,14 +32,15 @@
 <!-- <hr> -->
 
 <!-- <label for="nft-contract-address">NFT collection: </label> -->
-<select name="nft-contract-address" id="nft-contract-address" style="display: none;" onchange="showInput('custom-nft-contract-address', this)">
-    <option value="none-selected" disabled>Select NFT Collection</option>
-    <option value="0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9" selected>lets be frens v2 (0x69F5...48c9)</option>
-    <option value="0x0">Custom Collection</option>
+<select name="nft-contract-address" id="nft-contract-address" onchange="showInput('custom-nft-contract-address', this)">
+    <!-- <option value="none-selected" disabled>Version</option> -->
+    <option value="0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9" selected>lets be frens v2.2 (0x69F5...48c9)</option>
+    <option value="0xC2CFD6dFbC52319f8F34D056F10EB49016925d27">lets be frens v1.0 (0xC2CF...5d27)</option>
+    <!-- <option value="0x0">Custom Collection</option> -->
 </select>
 <button type="button" onclick="showNFTs()">Connect Wallet and Check</button>
 <br>
-<input name="custom-nft-contract-address" id="custom-nft-contract-address" type="text" placeholder="Enter custom NFT contract address here: 0x..." style="width: 406px;">
+<input name="custom-nft-contract-address" id="custom-nft-contract-address" type="text" placeholder="Enter custom NFT contract address here: 0x..." style="width: 406px">
 <br>
 
 <!-- <hr> -->

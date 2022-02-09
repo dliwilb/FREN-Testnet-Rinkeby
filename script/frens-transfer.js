@@ -1,6 +1,6 @@
 // let isGettingTokenOwner = false;
 
-const nftContractAddress = '0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9'; // v2.2
+// const nftContractAddress = '0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9'; // v2.2
 // document.getElementById('nft-contract-address').value = nftContractAddress;
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -25,7 +25,7 @@ async function getOwner0xAddress(){
     await switchNetwork();
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // const nftContractAddress = document.getElementById('nft-contract-address').value;
+    const nftContractAddress = document.getElementById('nft-contract-address').value;
     const tokenId = document.getElementById('nf-token-id').value;
     // console.log(tokenId);
 
