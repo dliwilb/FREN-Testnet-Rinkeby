@@ -40,7 +40,7 @@ async function showLatestFrens() {
         document.getElementById('div-latest-frens').innerHTML +=
             `
             <span class="nftdisplay">
-                <img width="320" src="${nftJSON.image}">
+                <img width="280" src="${nftJSON.image}">
                 <span class="nftTokenInfo"> fren # ${newItemId} made by ${createdByShort}</span>
             </span>
             `;
