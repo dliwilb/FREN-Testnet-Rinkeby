@@ -45,8 +45,22 @@
     <a href="https://rinkeby.etherscan.io/address/0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9">0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9</a>
 </h4>
 
+<br>
+
 <button type="button" onclick="readContractStatVar()">Read Contract State Variables</button>
-<ul id="div-contract-info"></ul>
+<ul id="list-contract-info"></ul>
+
+<br>
+
+<button type="button" onclick="readWhitelisted()">Query userAdded Events</button>
+<ul id="list-whitelisted"></ul>
+
+<br>
+
+<input name="address-to-be-whitelisted" id="address-to-be-whitelisted" type="text" placeholder="address to be whitelisted" style="width: 486px">
+<br>
+<button type="button" onclick="addUser()">addUser</button>
+<button type="button" onclick="addUserWhitelistWaived()">addUserWhitelistWaived</button>
 
 
 <br><br><br><br><br><br>
