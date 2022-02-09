@@ -29,7 +29,10 @@ a:hover {
 
 span.nftdisplay {
     display: inline-block;
-    width: 290px;
+    width: 320px;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 span.text-token-id {
