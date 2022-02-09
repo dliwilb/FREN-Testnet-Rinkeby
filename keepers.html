@@ -3,7 +3,7 @@
 	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant-TW" xml:lang="zh-Hant-TW">
 <head>
-<title>frens creators</title>
+<title>frens keepers</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style>
 
@@ -32,6 +32,19 @@
         height: auto;
     }
 
+    img.assets {
+        margin: 5px;
+        max-width:300px;
+        max-height:300px;
+        min-height:300px;
+        width: auto;
+        height: auto;
+    }
+
+    span.imgbox {
+        display: inline-block;
+        width: 300px;
+    }
 
 </style>
 <link rel="stylesheet" href="css/frens-style.css">
@@ -59,13 +72,13 @@
         </div>
     </div>
     &nbsp;
-    <h1 style="display: inline-block">creators</h1>
+    <h1 style="display: inline-block">keepers</h1>
 </div>
 
-<input name="creator-address" id="creator-address" type="text" placeholder="0x..." style="width: 306px" onchange="onShowCreated()">
+<input name="keeper-address" id="keeper-address" type="text" placeholder="0x..." style="width: 306px" onchange="onShowKept()">
 
-
-<div id="div-frens-created" style="margin: 12px; text-align: center;"></div>
+<div id="div-keeper-info" style="line-height: 3"></div>
+<div id="div-frens-kept" style="margin: 12px; text-align: center;"></div>
 
 
 <!-- Footer -->
@@ -75,7 +88,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 <script src="script/frens-abi-v2p2.js"></script>
-<script src="script/frens-creators.js"></script>
+<script src="script/frens-keepers.js"></script>
 <script src="script/frens-layout.js"></script>
 
 <span style="color: #555555">有問題不一定要找 <a href="https://noise.cash/u/liwi">https://noise.cash/u/liwi</a>，因為他也不一定會。</span>

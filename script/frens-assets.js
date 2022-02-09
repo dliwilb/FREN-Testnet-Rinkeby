@@ -19,16 +19,6 @@ async function showNFTs() {
 
         const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-        // const nftContractAddress = '0xf7774f3538ABB28c802933303d7ceA7367D95478';  // TPSI on Rinkeby --> ok
-        // const nftContractAddress = '0xEC77b8C58013FeDFF20464cA7ac7B243CB1ED359';  // TPSI on smartBCH --> ok
-        // const nftContractAddress = '0xD27CFd5b254E8D958c0c8e7f99E17A1e33652C1A'; // cryptor.at
-        // const nftContractAddress = '0xE9513fCfdc498bEC30BE5eeD5EbB41B7C909AdDA';  // Duck --> ok
-        // const nftContractAddress = '0xc4A688f832627DDeFF42E5346daD10A0df9879b6';  // Darker Duck --> ok
-        // const nftContractAddress = '0x36F7e5eaFA2E96872B40cFBeD8e41767337ca8cF';  // Queens;
-        // const nftContractAddress = '0xE765026Cad648785b080E78700cBF6fa1C050d7C';  // CashCats
-        // const nftContractAddress = '0x88fA0495d5E9C1B178EAc1D76DF9D729e39fD8E8';  // Poolside Puffers
-        // const nftContractAddress = '0x48973dbAC0d46B939CD12A7250eFBA965e8a8cf2';  // Reapers
-        // 0x87aA4eF35454fEF0B3E796d20Ab609d3c941F46b   // Smart Waifu
 
         let nftContractAddress = document.getElementById('nft-contract-address').value;
 
@@ -103,7 +93,7 @@ async function showNFTs() {
                 }
 
                 document.getElementById('list-of-nfts').innerHTML +=
-                    `<span class="nftdisplay">[${ownedIndex}] Token ID: ${arrayTokenId[i]}<span class="imgbox"><a href="${nftJSON.image}" target="_blank"><img class="assets" src="${nftJSON.image}"></a></span> <a href="transfer.html?nft_contract_address=${nftContractAddress}&token_id=${arrayTokenId[i]}" title="Transfer"><img src="transfer-icon-neg.png"></a></span>`;
+                    `<span class="nftdisplay">[${ownedIndex}] Token ID: ${arrayTokenId[i]}<span class="imgbox"><a href="tokens.html?t=${arrayTokenId[i]}"><img class="assets" src="${nftJSON.image}"></a></span> <a href="transfer.html?nft_contract_address=${nftContractAddress}&token_id=${arrayTokenId[i]}" title="Transfer"><img src="transfer-icon-neg.png"></a></span>`;
                 
             }
         }

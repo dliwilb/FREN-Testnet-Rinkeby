@@ -23,20 +23,11 @@ async function showCreated(createdBy) {
     // const provider = ethers.getDefaultProvider(4);
     const provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/2c1d58028d4343dbb2680897c28b8bc2');
 
-    const blockNum = await provider.getBlockNumber();   
-    // const queryPeriodHour = document.getElementById('query-period-hours').value;
-    const queryPeriodHour = 24;
-    const queryPeriodBlock = queryPeriodHour * 60 * 60 / 5;
-    const fromBlock = blockNum - queryPeriodBlock;
-    const toBlock = blockNum;
-
     const nftContractAddress = '0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9'; // v2.2
     const nftContract = new ethers.Contract(nftContractAddress, frensAbi, provider);
 
-    // const creatorAddress = '0x813AD48aa283FA788711423422d92CA433A33FE9';
-
     const eventFilter = nftContract.filters.tokenCreated(null, null, createdBy);
-    const events = await nftContract.queryFilter(eventFilter, fromBlock, toBlock);
+    const events = await nftContract.queryFilter(eventFilter);
     // console.log(events);
 
     const createdByShort = createdBy.substring(0, 6) + '...' + createdBy.substring(createdBy.length - 4);
@@ -99,9 +90,6 @@ async function showCreated(createdBy) {
                 isRepeating = true;
             }
 
-
-            // document.getElementById('div-frens-created').innerHTML +=
-
         }
 
     }
@@ -109,8 +97,6 @@ async function showCreated(createdBy) {
     htmlToAdd += '</div><!-- loc#3 -->';
     isRepeating = false;
     
-
-    console.log(htmlToAdd);
     document.getElementById('div-frens-created').innerHTML += htmlToAdd;
 
 
