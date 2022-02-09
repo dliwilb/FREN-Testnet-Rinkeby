@@ -25,6 +25,7 @@ async function getOwner0xAddress(){
     await switchNetwork();
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // const provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/2c1d58028d4343dbb2680897c28b8bc2');
     const nftContractAddress = document.getElementById('nft-contract-address').value;
     const tokenId = document.getElementById('nf-token-id').value;
     // console.log(tokenId);
@@ -53,7 +54,7 @@ async function getOwner0xAddress(){
 
 
             document.getElementById('div-nft-info').innerHTML = 
-                `<img src="${nftJSON.image}" width=512 height=512>`;
+                `<img class="assets" src="${nftJSON.image}">`;
 
             
             // console.log(connected0xAccount);
