@@ -5,6 +5,7 @@ let isNetworkConnected = false;
 // const nftContractAddress = '0xC2CFD6dFbC52319f8F34D056F10EB49016925d27'; // v1.0
 const nftContractAddress = '0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9'; // v2.2
 document.getElementById('nft-contract-address').value = nftContractAddress;
+document.getElementById('link-to-nft-contract-address').href = 'https://rinkeby.etherscan.io/address/' + nftContractAddress;
 
 async function onConnect() {
 
