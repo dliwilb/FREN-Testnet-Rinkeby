@@ -74,19 +74,63 @@ async function readWhitelisted() {
 
 async function addUserWhitelistWaived() {
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const nftContract = new ethers.Contract(nftContractAddress, frensAbi, signer);
-    
-    let whitelistFee = await nftContract.whitelistFee();
-    whitelistFee = Number(whitelistFee);
-    console.log(whitelistFee);
-    console.log(document.getElementById('address-to-be-whitelisted').value);
+    if ( ethers.utils.isAddress(document.getElementById('address-to-be-whitelisted').value) ){
 
-    await nftContract.addUserWhitelistWaived(
-        document.getElementById('address-to-be-whitelisted').value, 
-        { value: whitelistFee }
-    ); 
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const nftContract = new ethers.Contract(nftContractAddress, frensAbi, signer);
+        
+        let whitelistFee = await nftContract.whitelistFee();
+        whitelistFee = Number(whitelistFee);
+        console.log(whitelistFee);
+        console.log(document.getElementById('address-to-be-whitelisted').value);
+
+        await nftContract.addUserWhitelistWaived(
+            document.getElementById('address-to-be-whitelisted').value, 
+            { value: whitelistFee }
+        ); 
+
+    }
+
+}
+
+async function addUser() {
+
+    if ( ethers.utils.isAddress(document.getElementById('address-to-be-whitelisted').value) ){
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const nftContract = new ethers.Contract(nftContractAddress, frensAbi, signer);
+        
+        let whitelistFee = await nftContract.whitelistFee();
+        whitelistFee = Number(whitelistFee);
+        console.log(whitelistFee);
+        console.log(document.getElementById('address-to-be-whitelisted').value);
+
+        await nftContract.addUser(
+            document.getElementById('address-to-be-whitelisted').value, 
+            { value: whitelistFee }
+        ); 
+
+    } else {
+        document.getElementById('div-address-info').innerHTML = 'Please enter a valid address.';
+    }
+
+}
+
+async function verifyUser() {
+
+    if ( ethers.utils.isAddress(document.getElementById('address-to-be-whitelisted').value) ){
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const nftContract = new ethers.Contract(nftContractAddress, frensAbi, provider);
+        
+        const isUserWhitelisted = await nftContract.verifyUser(document.getElementById('address-to-be-whitelisted').value); 
+        document.getElementById('div-address-info').innerHTML = isUserWhitelisted;
+
+    } else {
+        document.getElementById('div-address-info').innerHTML = 'Please enter a valid address.';
+    }
 
 }
 
