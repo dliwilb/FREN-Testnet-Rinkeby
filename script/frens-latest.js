@@ -33,16 +33,24 @@ async function showLatestFrens() {
             nftJSON.image = 'https://ipfs.io/ipfs/' + foundIPFSinJSONImage[1];
         }
 
-        console.log(nftJSON.image);
+        // console.log(nftJSON.image);
 
         const createdByShort = createdBy.substring(0, 6) + '...' + createdBy.substring(createdBy.length - 4);
 
         document.getElementById('div-latest-frens').innerHTML +=
             `
-            <span class="nftdisplay">
-                <img width="280" src="${nftJSON.image}">
-                <span class="nftTokenInfo"> fren # ${newItemId} made by ${createdByShort}</span>
-            </span>
+            <div class="nft-item">
+                <img class="nft-image" src="${nftJSON.image}">
+                <div class="nft-token-info">
+                    fren # ${newItemId} made by ${createdByShort}
+                </div>
+                <div class="nft-token-info">
+                    ${nftJSON.name}
+                </div>
+                <div class="nft-token-info">
+                    ${nftJSON.description}
+                </div>
+            </div>
             `;
     }
 

@@ -12,9 +12,26 @@
         font-family: monospace;
     }
 	
-    .nftTokenInfo {
-        color: #555555
+    .nft-token-info {
+        color: #555555;
+        /* display: inline-block; */
+        /* width: 512px; */
     }
+
+    div.nft-item{
+        margin-top: 30px;
+        margin-bottom: 120px;
+    }
+
+    .nft-image {
+        /* display: block; */
+        max-width:512px;
+        max-height:512px;
+        width: auto;
+        height: auto;
+    }
+
+
 
 </style>
 <link rel="stylesheet" href="css/frens-style.css">
@@ -44,8 +61,10 @@
 
 
 <!-- <h2>our lastest frens</h2> -->
-<span style="color: #555555; text-align: center; vertical-align: top;">our latest frens</span>
-<div id="div-latest-frens"></div>
+<div style="color: #555555; text-align: right; vertical-align: top;">our latest frens</div>
+<!-- <div style="text-align: center;"> -->
+    <div id="div-latest-frens" style="text-align: center;"></div>
+<!-- </div> -->
 
 
 <!-- Footer -->
