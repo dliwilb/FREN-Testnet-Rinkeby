@@ -1,8 +1,18 @@
 # lets be frens - testnet Rinkeby
 
 
-### V2.2 合約位址   https://rinkeby.etherscan.io/address/0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9 
+### NFT V2.2 合約位址   https://rinkeby.etherscan.io/address/0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9 
 合約管理者（contract owner）為 0xF8Fd0bD293f529db578Fa89B8D706aEa0CCe727D （多簽錢包）
+金庫管理者為 0x92A9E00F3B52342B47bF5526c1c8cdD43bC76D25
 
-### V1.0 合約位址   https://rinkeby.etherscan.io/address/0xC2CFD6dFbC52319f8F34D056F10EB49016925d27
+### 多簽錢包合約位址    https://rinkeby.etherscan.io/address/0xF8Fd0bD293f529db578Fa89B8D706aEa0CCe727D
+Required: 2 of 5
+Co-Owners: 
+0x5c933CA68D583F688B978822E0eF3eD66a04ec0c
+0xf84C71118883C8367Bd13Fe0d74417E640fe3e1c
+0x813AD48aa283FA788711423422d92CA433A33FE9
+0x6630cE5568250Ebe298d5b393b095EF792d396aB
+0x92A9E00F3B52342B47bF5526c1c8cdD43bC76D25
+
+### NFT V1.0 合約位址   https://rinkeby.etherscan.io/address/0xC2CFD6dFbC52319f8F34D056F10EB49016925d27
 合約管理者（contract owner）為 0x813ad48aa283fa788711423422d92ca433a33fe9
