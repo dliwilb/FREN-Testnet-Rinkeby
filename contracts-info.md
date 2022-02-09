@@ -15,7 +15,7 @@ treasury | 0x92A9E00F3B52342B47bF5526c1c8cdD43bC76D25
 透過 https://gnosis-safe.io/app 與 NFT 合約互動：\
 New transaction -> Contract interaction -> 輸入 NFT contract address -> 選取要執行的合約功能
 
-Required    | 2 of 5
+Required    | 2 of 6
 ----------- | ------
 1 | 0x5c933CA68D583F688B978822E0eF3eD66a04ec0c
 2 | 0xf84C71118883C8367Bd13Fe0d74417E640fe3e1c
