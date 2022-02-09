@@ -1,6 +1,16 @@
 
-async function showLatestFrens() {
+function onShowCreated() {
+    const creatorAddress = document.getElementById('creator-address').value;
+    if ( ethers.utils.isAddress(creatorAddress) ){
+        document.getElementById('div-frens-created').innerHTML = 'Loading...';
+        showCreated(creatorAddress);
+    } else {
+        document.getElementById('div-frens-created').innerHTML = 'Please enter a valid creator address.';
+        return 0;
+    }
+}
 
+async function showCreated(createdBy) {
     const provider = ethers.getDefaultProvider(4);
 
     const blockNum = await provider.getBlockNumber();   
@@ -13,28 +23,28 @@ async function showLatestFrens() {
     const nftContractAddress = '0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9'; // v2.2
     const nftContract = new ethers.Contract(nftContractAddress, frensAbi, provider);
 
-    const eventFilter = nftContract.filters.tokenCreated();
+    // const creatorAddress = '0x813AD48aa283FA788711423422d92CA433A33FE9';
+
+    const eventFilter = nftContract.filters.tokenCreated(null, null, createdBy);
     const events = await nftContract.queryFilter(eventFilter, fromBlock, toBlock);
     // console.log(events);
 
-    // these are our latest frens
+    const createdByShort = createdBy.substring(0, 6) + '...' + createdBy.substring(createdBy.length - 4);
 
-    // const dots = '...';
-    // document.getElementById('div-latest-status').innerHTML = '';
-
+    document.getElementById('div-frens-created').innerHTML = 'frens&nbsp;&nbsp;made by&nbsp;&nbsp;' + createdByShort;
     let previousTokenURI = '';
-    let n_dots = 0;
+    let isRepeating = false;
     for (let i = events.length-1; i >= 0; i--) {
-        // n_dots = (n_dots + 1) % 4;
-        // const statusText = 'Loading' + dots.substring(0, n_dots);
-        // document.getElementById('div-latest-status').innerHTML = statusText;
-
         const newItemId = events[i].args[0];
         let tokenURI = events[i].args[1].trim();
-        const createdBy = events[i].args[2];
-        
 
         if (tokenURI !== previousTokenURI) {
+            isRepeating = false;
+
+            if (i < events.length-1){
+                document.getElementById('div-frens-created').innerHTML += '</div>';
+            }
+
             previousTokenURI = tokenURI;
 
             const foundIPFSinURI = tokenURI.match(/ipfs:\/\/(\w+)/);
@@ -44,40 +54,42 @@ async function showLatestFrens() {
 
             let nftJSON = await fetchJSON(tokenURI);
 
-
             const foundIPFSinJSONImage = nftJSON.image.match(/ipfs:\/\/(\w+)/);
             if (foundIPFSinJSONImage[1] != ''){
                 nftJSON.image = 'https://ipfs.io/ipfs/' + foundIPFSinJSONImage[1];
             }
 
-
-            const createdByShort = createdBy.substring(0, 6) + '...' + createdBy.substring(createdBy.length - 4);
-
-            document.getElementById('div-latest-frens').innerHTML +=
+            document.getElementById('div-frens-created').innerHTML +=
                 `
                 <div class="nft-item">
                     <img class="nft-image" src="${nftJSON.image}">
                     <div class="nft-token-info">
-                        fren # ${newItemId}&nbsp;&nbsp;made by&nbsp;&nbsp;${createdByShort}
-                    </div>
-                    <div class="nft-token-info">
-                        "${nftJSON.name}"
+                        # ${newItemId} : "${nftJSON.name}"
                     </div>
                     <div class="nft-token-info">
                         ${nftJSON.description}
                     </div>
-                </div>
                 `;
+            
 
+        } else {
+            isRepeating = true;
+
+            document.getElementById('div-frens-created').innerHTML +=
+            `
+            <span class="nft-token-info"># ${newItemId} </span>
+            `;
         }
+
     }
 
-    document.getElementById('div-latest-status').innerHTML = '...these are our latest frens';
+    if ( isRepeating == true ){
+        document.getElementById('div-frens-created').innerHTML += '</div>';
+    }
+
+    // let listContent = '';
 
 }
-
-showLatestFrens();
-
 
 
 async function fetchJSON(api_uri) {

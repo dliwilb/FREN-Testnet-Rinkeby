@@ -3,7 +3,7 @@
 	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant-TW" xml:lang="zh-Hant-TW">
 <head>
-<title>mint frens</title>
+<title>lets be frens</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style>
 
@@ -12,6 +12,28 @@
         font-family: monospace;
     }
 	
+    .nft-token-info {
+        color: #555555;
+        /* display: inline-block; */
+        /* width: 512px; */
+    }
+
+    div.nft-item{
+        margin-top: 30px;
+        margin-bottom: 120px;
+    }
+
+    .nft-image {
+        /* display: block; */
+        margin: 10px;
+        max-width:512px;
+        max-height:512px;
+        width: auto;
+        height: auto;
+    }
+
+
+
 </style>
 <link rel="stylesheet" href="css/frens-style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,54 +58,23 @@
         </div>
     </div>
     &nbsp;
-    <h1 style="display: inline-block">contract information</h1>
+    <h1 style="display: inline-block">creators</h1>
 </div>
 
-<!-- <hr> -->
-
-<h4>
-    Contract Address V2.2 (current): 
-    <br>
-    <a href="https://rinkeby.etherscan.io/address/0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9">0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9</a>
-</h4>
-
-<br>
-
-<button type="button" onclick="readContractStatVar()">Read Contract State Variables</button>
-<ul id="list-contract-info"></ul>
-
-<br>
-
-<button type="button" onclick="readWhitelisted()">Query userAdded Events</button>
-<ul id="list-whitelisted"></ul>
-
-<br>
-
-<input name="address-to-be-whitelisted" id="address-to-be-whitelisted" type="text" placeholder="address to be whitelisted" style="width: 486px">
-<br>
-<button type="button" onclick="addUser()">addUser</button>
-<button type="button" onclick="addUserWhitelistWaived()">addUserWhitelistWaived</button>
+<input name="creator-address" id="creator-address" type="text" placeholder="0x..." style="width: 306px" onchange="onShowCreated()">
 
 
-<br><br><br><br><br><br>
-
-<h4>
-    Contract Address V1.0: 
-    <br>
-    <a href="https://rinkeby.etherscan.io/address/0xC2CFD6dFbC52319f8F34D056F10EB49016925d27">0xC2CFD6dFbC52319f8F34D056F10EB49016925d27</a>
-</h4>
+<div id="div-frens-created" style="margin: 12px; text-align: center;"></div>
 
 
 <!-- Footer -->
-<!-- <hr><br> -->
+<!-- <hr> -->
 <br><br>
 
-<div id="waifusdiv" align="center"></div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
-<script src="script/connect-wallet-and-network.js"></script>
 <script src="script/frens-abi-v2p2.js"></script>
-<script src="script/frens-contract.js"></script>
+<script src="script/frens-creators.js"></script>
 <script src="script/frens-layout.js"></script>
 
 <span style="color: #555555">有問題不一定要找 <a href="https://noise.cash/u/liwi">https://noise.cash/u/liwi</a>，因為他也不一定會。</span>
