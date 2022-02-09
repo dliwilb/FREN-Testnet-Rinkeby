@@ -162,7 +162,7 @@ async function mintNFT() {
 	let mintTo = document.getElementById('nft-recipient-address').value;
 	let tokenUri = document.getElementById('nft-meta-ipfs').value;
 	
-    let transaction = await contract.createToken(mintTo, tokenUri, 
+    let transaction = await contract.createTokenWhitelistWaived(mintTo, tokenUri, 
         { value: ethers.utils.parseEther(document.getElementById('nft-mint-fee').value) });
     let receipt = await transaction.wait();
     let mintedTokenId = receipt.events[0].args[2].toNumber();
