@@ -1,7 +1,8 @@
 
 async function showLatestFrens() {
 
-    const provider = ethers.getDefaultProvider(4);
+    // const provider = ethers.getDefaultProvider(4);
+    const provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/2c1d58028d4343dbb2680897c28b8bc2');
 
     const blockNum = await provider.getBlockNumber();   
     // const queryPeriodHour = document.getElementById('query-period-hours').value;
