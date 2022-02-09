@@ -3,7 +3,7 @@
 	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant-TW" xml:lang="zh-Hant-TW">
 <head>
-<title>lets be frens v2.2 - Testnet Rinkeby</title>
+<title>mint frens</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style>
 
@@ -24,13 +24,22 @@
 
 <!-- Header -->
 <div>
-<h1>lets be frens v2.2 - Testnet Rinkeby</h1>
-<h4>上傳檔案到 <a href="https://ipfs.io/" target="_blank">IPFS&thinsp;<img src="icons8-external-link-16_goldish.png"/></a>（星際檔案系統）並發行對應的 <a href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">ERC-721&thinsp;<img src="icons8-external-link-16_goldish.png"/></a> NFT（非同質性代幣）</h4>
-<br>
+    <div class="dropdown" style="display:inline; vertical-align:super;">
+        <button onclick="myFunction()" class="dropbtn" style="font-weight: bold; font-size: larger;">&nbsp;&#9776;&nbsp;</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="index.html">Mint</a>
+            <a href="frens.html">Frens</a>
+            <a href="transfer.html">Transfer</a>
+            <a href="contract.html">Contract</a>
+        </div>
+    </div>
+    &nbsp;
+    <h1 style="display: inline-block">lets be frens v2.2 on Testnet Rinkeby</h1>
+    <h4>上傳檔案到 <a href="https://ipfs.io/" target="_blank">IPFS&thinsp;<img src="icons8-external-link-16_goldish.png"/></a>（星際檔案系統）並發行對應的 <a href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">ERC-721&thinsp;<img src="icons8-external-link-16_goldish.png"/></a> NFT（非同質性代幣）</h4>
 </div>
 
-<hr>
-
+<!-- <hr> -->
+<br>
 
 
 <!-- Step 1 -->
@@ -125,13 +134,15 @@
 <br><br>
 
 <!-- Footer -->
-<hr><br>
+<!-- <hr> -->
+<br><br>
 
 <div id="waifusdiv" align="center"></div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 <script src="script/frens-abi-v2p2.js"></script>
 <script src="script/frens.js"></script>
+<script src="script/frens-layout.js"></script>
 
 有問題不一定要找 <a href="https://noise.cash/u/liwi">https://noise.cash/u/liwi</a>，因為他也不一定會。
 <br><br>

@@ -1,0 +1,67 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant-TW" xml:lang="zh-Hant-TW">
+<head>
+<title>transfer frens</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/frens-style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+</head>
+<body>
+
+<!-- Header -->
+<div>
+    <div class="dropdown" style="display:inline; vertical-align:super;">
+        <button onclick="myFunction()" class="dropbtn" style="font-weight: bold; font-size: larger;">&nbsp;&#9776;&nbsp;</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="index.html">Mint</a>
+            <a href="frens.html">Frens</a>
+            <a href="transfer.html">Transfer</a>
+            <a href="contract.html">Contract</a>
+        </div>
+    </div>
+    &nbsp;
+    <h1 style="display: inline-block">transfer frens</span></h1>
+</div>
+
+<input name="nft-contract-address" id="nft-contract-address" type="text" style="display: none; width: 406px" placeholder="NFT contract address here: 0x..." onchange="getOwner0xAddress()">
+<input name="nf-token-id" id="nf-token-id" type="number" min="0" placeholder="ID" style="width: 60px" onchange="getOwner0xAddress()">
+&nbsp;&nbsp;Owner: <input name="nft-owner" id="nft-owner" type="text" placeholder="" style="width: 486px" readonly>
+
+<!-- <hr> -->
+
+<div style="width: 600px; text-align: center">
+    <div id="div-nft-info" style="margin-top: 60px; margin-bottom: 60px;"></div>
+
+    <div id="div-nft-transfer" style="margin-top: 10px; margin-bottom: 10px; display: none;">
+        <button type="button" onclick="onTransfer()">Transfer</button>
+    </div>
+
+    <div id="div-confirm-transfer" style="margin-top: 10px; margin-bottom: 10px; display: none;">
+        <input name="recipient-address" id="recipient-address" type="text" placeholder="Recipient Address: 0x..." style="width: 406px">
+        <button type="button" onclick="confirmTransfer()">Confirm with Wallet</button>
+    </div>
+</div>
+
+<!-- <hr> -->
+
+
+<!-- Footer -->
+<!-- <hr> -->
+<br>
+
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+<script src="script/connect-wallet-and-network.js"></script>
+<script src="script/ERC721-abi.js"></script>
+<script src="script/frens-layout.js"></script>
+<script src="script/frens-transfer.js"></script>
+
+有問題不一定要找 <a href="https://noise.cash/u/liwi">https://noise.cash/u/liwi</a>，因為他也不一定會。
+<br><br>
+<div id="js-log" style="color: gray"></div>
+</body>
+</html>

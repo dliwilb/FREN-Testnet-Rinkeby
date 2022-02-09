@@ -1,0 +1,64 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant-TW" xml:lang="zh-Hant-TW">
+<head>
+<title>frens of yours</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/frens-style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+</head>
+<body>
+
+
+<!-- Header -->
+<div>
+    <div class="dropdown" style="display:inline; vertical-align:super;">
+        <button onclick="myFunction()" class="dropbtn" style="font-weight: bold; font-size: larger;">&nbsp;&#9776;&nbsp;</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="index.html">Mint</a>
+            <a href="frens.html">Frens</a>
+            <a href="transfer.html">Transfer</a>
+            <a href="contract.html">Contract</a>
+        </div>
+    </div>
+    &nbsp;
+    <h1 style="display: inline-block">frens of yours</h1>
+</div>
+
+<!-- <hr> -->
+
+<!-- <label for="nft-contract-address">NFT collection: </label> -->
+<select name="nft-contract-address" id="nft-contract-address" style="display: none;" onchange="showInput('custom-nft-contract-address', this)">
+    <option value="none-selected" disabled>Select NFT Collection</option>
+    <option value="0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9" selected>lets be frens v2 (0x69F5...48c9)</option>
+    <option value="0x0">Custom Collection</option>
+</select>
+<button type="button" onclick="showNFTs()">Connect Wallet and Check</button>
+<br>
+<input name="custom-nft-contract-address" id="custom-nft-contract-address" type="text" placeholder="Enter custom NFT contract address here: 0x..." style="width: 406px;">
+<br>
+
+<!-- <hr> -->
+<div id="collection-and-owner" style="line-height: 3"></div>
+<div id="list-of-nfts" style="line-height: 1.6; margin-left: 10px"></div>
+
+<!-- Footer -->
+<!-- <hr> -->
+<br><br>
+
+<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+<script src="script/connect-wallet-and-network.js"></script>
+<script src="script/ERC721-abi.js"></script>
+<script src="script/frens-layout.js"></script>
+<script src="script/frens-assets.js"></script>
+
+有問題不一定要找 <a href="https://noise.cash/u/liwi">https://noise.cash/u/liwi</a>，因為他也不一定會。
+<br><br>
+<div id="js-log" style="color: gray"></div>
+</body>
+</html>
