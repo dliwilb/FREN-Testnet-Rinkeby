@@ -12,6 +12,10 @@
         font-family: monospace;
     }
 	
+    .nftTokenInfo {
+        color: #555555
+    }
+
 </style>
 <link rel="stylesheet" href="css/frens-style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +31,8 @@
     <div class="dropdown" style="display:inline; vertical-align:super;">
         <button onclick="myFunction()" class="dropbtn" style="font-weight: bold; font-size: larger;">&nbsp;&#9776;&nbsp;</button>
         <div id="myDropdown" class="dropdown-content">
-            <a href="index.html">Mint</a>
+            <a href="index.html">Home</a>
+            <a href="mint.html">Mint</a>
             <a href="frens.html">Frens</a>
             <a href="transfer.html">Transfer</a>
             <a href="contract.html">Contract</a>
@@ -35,113 +40,22 @@
     </div>
     &nbsp;
     <h1 style="display: inline-block">lets be frens v2.2 on Testnet Rinkeby</h1>
-    <h4>上傳檔案到 <a href="https://ipfs.io/" target="_blank">IPFS&thinsp;<img src="icons8-external-link-16_goldish.png"/></a>（星際檔案系統）並發行對應的 <a href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">ERC-721&thinsp;<img src="icons8-external-link-16_goldish.png"/></a> NFT（非同質性代幣）</h4>
-</div>
-
-<!-- <hr> -->
-<br>
-
-
-<!-- Step 1 -->
-<h3>【步驟一】透過&thinsp;Pinata API&thinsp;上傳檔案到&thinsp;IPFS</h3>
-<div style="margin-left: 30px">
-    <a href="https://medium.com/pinata/how-to-pin-to-ipfs-effortlessly-ba3437b33885" target="_blank">如何設定獲得&thinsp;Pinata API keys&thinsp;<img src="icons8-external-link-16_goldish.png"/></a> （需要&thinsp;pinFileToIPFS&thinsp;與&thinsp;pinJSONToIPFS&thinsp;權限）
-    <br><br>
-    <table>
-        <tr>
-            <td><label for="pinata-api-key">pinata_api_key</label>&nbsp;</td>
-            <td><input type="text" id="pinata-api-key" size="26" value="" placeholder="60**ec**e6*3**605**f" /></td>
-        </tr>
-        <tr>
-            <td><label for="pinata-secret-api-key">pinata_secret_api_key</label>&nbsp;</td>
-            <td><input type="text" id="pinata-secret-api-key" size="70" value="" placeholder="6f**67**bc893d**5dfcef****d496dbfba****e26ee8a51cb******82bc**13" /></td>
-        </tr>
-        <tr>
-            <td><label for="file-to-pin">選擇檔案</label></td>
-            <td><input type="file" id="file-to-pin" name="file-to-pin"></td>
-        </tr>
-    </table>
-    <br>
-    <button onclick="pinFileToIPFS()">上傳檔案</button><span id="file-preview-https"></span><br>
-</div>
-
-<br><br>
-
-
-<!-- Step 2 -->
-<h3>【步驟二】準備&thinsp;NFT meta（元檔案；即描述步驟一檔案的檔案）並上傳到&thinsp;IPFS</h3>
-<div style="margin-left: 30px">
-    <table>
-        <tr>
-            <td><label for="nft-name">NFT 標題</label></td>
-            <td><input type="text" id="nft-name" size=24" value="" placeholder="lets be frens" /></td>
-        </tr>
-        <tr>
-            <td><label for="nft-description">NFT 說明</label></td>
-            <td><input type="text" id="nft-description" size="60" value="" placeholder="孤獨比想像中的還遙遠靜謐" /></td>
-        </tr>
-        <tr>
-            <td><label for="nft-image-ipfs">NFT 檔案位址</label>&nbsp;</td>
-            <td><input type="text" id="nft-image-ipfs" size="60" value="" placeholder="ipfs://" /></td>
-        </tr>
-    </table>
-    <br>
-    <button onclick="pinJSONToIPFS()">上傳 Meta</button><span id="meta-preview-https"></span><br>
 </div>
 
 
-<br><br>
+<!-- <h2>our lastest frens</h2> -->
+<span style="color: #555555; text-align: center; vertical-align: top;">our latest frens</span>
+<div id="div-latest-frens"></div>
 
-
-<!-- Step 3 -->
-<h3>【步驟三】連接錢包</h3>
-<div style="margin-left: 30px">
-    <button onclick="onConnect()">連結錢包</button>&nbsp;&#10230 
-    <label for="connected-address">錢包位址：</label><input type="text" id="connected-address" size="45" value="" readonly placeholder="0x..."/><br>
-</div>
-<br><br>
-
-
-<!-- Step 4 -->
-<h3>【步驟四】發行&thinsp;ERC-721&thinsp;NFT&thinsp;（0.001&thinsp;TestETH&thinsp;+&thinsp;瓦斯費）</h3>
-<div style="margin-left: 30px">
-    <a href="https://faucets.chain.link/rinkeby" target="_blank">Rinkeby Test ETH 水龍頭&thinsp;<img src="icons8-external-link-16_goldish.png"/></a>
-    <br><br>
-    <table>
-        <tr>
-            <td><label for="nft-contract-address">NFT 合約位址</label> <a id="link-to-nft-contract-address" href="https://rinkeby.etherscan.io/address/0xC2CFD6dFbC52319f8F34D056F10EB49016925d27" target="_blank">Etherscan<img src="icons8-external-link-16_goldish.png"/></a></td>
-            <td><input type="text" id="nft-contract-address" size="60" value="0xC2CFD6dFbC52319f8F34D056F10EB49016925d27" readonly /></td>
-        </tr>
-        <tr>
-            <td><label for="nft-mint-fee">鑄造費用</label> <button onclick="getMintFee()">更新</button></td>
-            <td><input type="text" id="nft-mint-fee" size="8" value="" readonly />  TestETH + 瓦斯費</td>
-        </tr>
-        <tr>
-            <td><label for="nft-meta-ipfs">NFT 元檔案 URI 位址</label></td>
-            <td><input type="text" id="nft-meta-ipfs" size="60" value="" placeholder="ipfs://" /></td>
-        </tr>
-        <tr>
-            <td><label for="nft-recipient-address">NFT 收件位址</label> <button onclick="toOneself()">給自己</button></td>
-            <td><input type="text" id="nft-recipient-address" size="60" value="" placeholder="0x..." /></td>
-        </tr>
-    </table>
-    <br>
-    <button onclick="mintNFT()">發行 NFT</button>&nbsp;&#10230 
-    <label for="tx-info">Token ID：</label><input type="text" id="tx-info" size="6" value="" readonly placeholder="1450"/><br>
-    <br>
-    <a href="https://www.abmedia.io/20210604-how-to-establish-your-first-metamask-wallet#nft" target="_blank">如何在&thinsp;MetaMask&thinsp;小狐狸手機版錢包裡用合約位址和&thinsp;Token ID&thinsp;匯入&thinsp;NFT&thinsp;<img src="icons8-external-link-16_goldish.png"/></a>
-</div>
-<br><br>
 
 <!-- Footer -->
 <!-- <hr> -->
 <br><br>
 
-<div id="waifusdiv" align="center"></div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 <script src="script/frens-abi-v2p2.js"></script>
-<script src="script/frens.js"></script>
+<script src="script/frens-latest.js"></script>
 <script src="script/frens-layout.js"></script>
 
 有問題不一定要找 <a href="https://noise.cash/u/liwi">https://noise.cash/u/liwi</a>，因為他也不一定會。
