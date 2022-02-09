@@ -2,6 +2,9 @@ console.log("frens.js loaded");
 
 let isWalletConnected = false;
 let isNetworkConnected = false;
+// const nftContractAddress = '0xC2CFD6dFbC52319f8F34D056F10EB49016925d27'; // v1.0
+const nftContractAddress = '0x69F511EAca22eD5c5f48ba3d5D3D0442340948c9'; // v2.2
+document.getElementById('nft-contract-address').value = nftContractAddress;
 
 async function onConnect() {
 
@@ -67,7 +70,6 @@ async function getMintFee(){
     if (isWalletConnected == true && isNetworkConnected == true){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = await provider.getSigner();
-        const nftContractAddress = document.getElementById('nft-contract-address').value;
         const contract = new ethers.Contract(nftContractAddress, frensAbi, signer);
         
         const nftMintFee = await contract.mintFee();
@@ -154,7 +156,6 @@ async function mintNFT() {
 	const provider = new ethers.providers.Web3Provider(window.ethereum);
 	const signer = provider.getSigner();
 
-	let nftContractAddress = document.getElementById('nft-contract-address').value;
     let contract = new ethers.Contract(nftContractAddress, frensAbi, signer);
 		
 	let mintTo = document.getElementById('nft-recipient-address').value;
