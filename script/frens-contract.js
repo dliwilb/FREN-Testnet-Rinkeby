@@ -122,7 +122,8 @@ async function verifyUser() {
 
     if ( ethers.utils.isAddress(document.getElementById('address-to-be-whitelisted').value) ){
 
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        // const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/2c1d58028d4343dbb2680897c28b8bc2');
         const nftContract = new ethers.Contract(nftContractAddress, frensAbi, provider);
         
         const isUserWhitelisted = await nftContract.verifyUser(document.getElementById('address-to-be-whitelisted').value); 
