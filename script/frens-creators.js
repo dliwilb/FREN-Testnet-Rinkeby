@@ -1,3 +1,12 @@
+const params = new Proxy(new URLSearchParams(window.location.search), {
+	get: (searchParams, prop) => searchParams.get(prop),
+});
+
+if (params["a"] !== null){
+	document.getElementById('creator-address').value = params["a"];
+    onShowCreated();
+}
+
 
 function onShowCreated() {
     const creatorAddress = document.getElementById('creator-address').value;
@@ -46,8 +55,7 @@ async function showCreated(createdBy) {
             isRepeating = false;
 
             if (i < events.length-1){
-                // document.getElementById('div-frens-created').innerHTML += '</div><!-- loc#1 -->';
-                htmlToAdd += '</div><!-- loc#1 -->';
+                htmlToAdd += '</div>';
             }
 
             previousTokenURI = tokenURI;
@@ -64,7 +72,6 @@ async function showCreated(createdBy) {
                 nftJSON.image = 'https://ipfs.io/ipfs/' + foundIPFSinJSONImage[1];
             }
 
-            // document.getElementById('div-frens-created').innerHTML +=
             htmlToAdd += 
                 `
                 <div class="nft-item">
@@ -79,16 +86,15 @@ async function showCreated(createdBy) {
             
 
         } else {
-            // console.log('trued');
             if (isRepeating == true){
                 htmlToAdd += 
                 `
-                <span class="nft-token-info"># ${newItemId} </span>&nbsp;<!-- loc#2 -->
+                <span class="nft-token-info">#${newItemId} </span>&nbsp;
                 `;
             } else {
                 htmlToAdd += 
                 `
-                <span class="nft-token-info">Multiple Editions...&nbsp;&nbsp;# ${newItemId} </span>&nbsp;<!-- loc#2 -->
+                <span class="nft-token-info">Multiple Editions...&nbsp;&nbsp;also as&nbsp;&nbsp;&nbsp;#${newItemId} </span>&nbsp;
                 `;
                 isRepeating = true;
             }

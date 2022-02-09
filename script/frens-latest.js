@@ -59,7 +59,7 @@ async function showLatestFrens() {
                 <div class="nft-item">
                     <img class="nft-image" src="${nftJSON.image}">
                     <div class="nft-token-info">
-                        fren # ${newItemId}&nbsp;&nbsp;made by&nbsp;&nbsp;${createdByShort}
+                        fren #${newItemId}&nbsp;&nbsp;made by&nbsp;&nbsp;<a class="creator" href="creators.html?a=${createdBy}">${createdByShort}</a>
                     </div>
                     <div class="nft-token-info">
                         "${nftJSON.name}"
