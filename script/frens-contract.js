@@ -50,7 +50,7 @@ async function readWhitelisted() {
     const events = await nftContract.queryFilter(eventFilter);
 
     for (let i = events.length-1; i >= 0; i--) {
-        const newUser = events[i].args[1];
+        const newUser = events[i].args[0];
         const approvedBy = events[i].args[1];
         // console.log(newUser + " added by " + approvedBy);
         listContent += `<li>${newUser} (added by ${approvedBy})</li>`;
