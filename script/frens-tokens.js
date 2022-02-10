@@ -74,12 +74,11 @@ async function showToken() {
             <div class="nft-token-info">
                 "${nftJSON.name}"
             </div>
-            <div class="nft-token-info">
-                ${nftJSON.description}
-            </div>
+            <div class="nft-token-info" style="white-space: pre">${nftJSON.description}</div>
         </div>
         `;
         // `<img class="nft-image" src="${nftJSON.image}">`;
+        console.log(nftJSON.description);
         
 
         // const eventFilter = nftContract.filters.tokenCreated(null, tokenURI, null);

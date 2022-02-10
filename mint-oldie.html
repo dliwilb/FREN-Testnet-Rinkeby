@@ -11,14 +11,6 @@
         /* font-size: 24px;  */
         font-family: monospace;
     }
-
-    .div-textarea{
-        width: 680px;
-    }
-
-    .div-textarea > textarea {
-        width: inherit;
-    }
 	
 </style>
 <link rel="stylesheet" href="css/frens-style.css">
@@ -89,13 +81,8 @@
             <td><input type="text" id="nft-name" size=24" value="" placeholder="lets be frens" /></td>
         </tr>
         <tr>
-            <!-- <td><label for="nft-description">NFT 說明</label></td> -->
-            <!-- <td><input type="text" id="nft-description" size="60" value="" placeholder="孤獨比想像中的還遙遠靜謐" /></td> -->
-            <td colspan="2">
-            <div class="div-textarea">
-                <textarea id="textarea-nft-description" cols="" rows="8" style="resize: vertical;" placeholder="說明"></textarea>
-            </div>
-            </td>
+            <td><label for="nft-description">NFT 說明</label></td>
+            <td><input type="text" id="nft-description" size="60" value="" placeholder="孤獨比想像中的還遙遠靜謐" /></td>
         </tr>
         <tr>
             <td><label for="nft-image-ipfs">NFT 檔案位址</label>&nbsp;</td>
@@ -156,7 +143,6 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
-<script src="script/frens-constants.js"></script>
 <script src="script/frens-abi-v2p2.js"></script>
 <script src="script/frens-mint.js"></script>
 <script src="script/frens-layout.js"></script>

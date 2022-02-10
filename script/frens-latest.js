@@ -40,7 +40,7 @@ async function showLatestFrens() {
 
             const foundIPFSinURI = tokenURI.match(/ipfs:\/\/(\w+)/);
             if (foundIPFSinURI[1] != ''){
-                tokenURI = 'https://ipfs.io/ipfs/' + foundIPFSinURI[1];
+                tokenURI = ipfsGateway + foundIPFSinURI[1];
             }
 
             let nftJSON = await fetchJSON(tokenURI);
@@ -48,7 +48,7 @@ async function showLatestFrens() {
 
             const foundIPFSinJSONImage = nftJSON.image.match(/ipfs:\/\/(\w+)/);
             if (foundIPFSinJSONImage[1] != ''){
-                nftJSON.image = 'https://ipfs.io/ipfs/' + foundIPFSinJSONImage[1];
+                nftJSON.image = ipfsGateway + foundIPFSinJSONImage[1];
             }
 
 
@@ -64,9 +64,7 @@ async function showLatestFrens() {
                     <div class="nft-token-info">
                         "${nftJSON.name}"
                     </div>
-                    <div class="nft-token-info">
-                        ${nftJSON.description}
-                    </div>
+                    <div class="nft-token-info" style="white-space: pre">${nftJSON.description}</div>
                 </div>
                 `;
 

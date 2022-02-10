@@ -116,8 +116,12 @@ async function pinFileToIPFS() {
 async function pinJSONToIPFS() {
 
     let objectName = document.getElementById('nft-name').value;
-    let objectDescription = document.getElementById('nft-description').value;
+    // let objectDescription = document.getElementById('nft-description').value;
+    let objectDescription = document.getElementById('textarea-nft-description').value;
     let objectIPFS = document.getElementById('nft-image-ipfs').value;
+
+    // console.log(objectDescription);
+    // return 0;
 
     const JSONBody = {
         pinataMetadata: {
