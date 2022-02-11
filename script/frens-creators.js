@@ -70,9 +70,7 @@ async function showCreated(createdBy) {
                     <div class="nft-token-info">
                         # ${newItemId} : "${nftJSON.name}"
                     </div><!-- loc#a -->
-                    <div class="nft-token-info">
-                        ${nftJSON.description}
-                    </div><!-- loc#b -->
+                    <div class="nft-token-info" style="white-space: pre">${nftJSON.description}</div>
                 `;
             
 
