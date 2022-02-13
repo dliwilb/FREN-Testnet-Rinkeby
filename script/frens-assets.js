@@ -76,7 +76,7 @@ async function showNFTs() {
                 let nftURI = await nftContract.tokenURI(arrayTokenId[i]);
                 // const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
                 const foundIPFSinURI = nftURI.match(/ipfs:\/\/(\w+)/);
-                if (foundIPFSinURI[1] != ''){
+                if (foundIPFSinURI != null){
                     nftURI = 'https://ipfs.io/ipfs/' + foundIPFSinURI[1];
                 }
                 // console.log("ipfs: " + found[1]);
@@ -88,7 +88,7 @@ async function showNFTs() {
                 // console.log(nftJSON.attributes[0]);
                 // console.log(nftJSON.attributes[0]["value"]);
                 const foundIPFSinJSONImage = nftJSON.image.match(/ipfs:\/\/(\w+)/);
-                if (foundIPFSinJSONImage[1] != ''){
+                if (foundIPFSinJSONImage != null){
                     nftJSON.image = 'https://ipfs.io/ipfs/' + foundIPFSinJSONImage[1];
                 }
 
