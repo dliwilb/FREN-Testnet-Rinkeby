@@ -1,5 +1,39 @@
 console.log("frens.js loaded");
 
+document.getElementById('pinata-api-key').value = getCookie("pinata-api-key");
+document.getElementById('pinata-secret-api-key').value = getCookie("pinata-secret-api-key");
+
+function savePinataKeys(){
+    setCookie("pinata-api-key", document.getElementById('pinata-api-key').value, 30);
+    setCookie("pinata-secret-api-key", document.getElementById('pinata-secret-api-key').value, 30);
+}
+
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    console.log(document.cookie);
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+}
+
+
+
 let isWalletConnected = false;
 let isNetworkConnected = false;
 // const nftContractAddress = '0xC2CFD6dFbC52319f8F34D056F10EB49016925d27'; // v1.0
